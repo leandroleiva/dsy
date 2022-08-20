@@ -29,6 +29,9 @@ class HomeController extends Controller
 
     public function dolarPost(Request $request)
     {
+        $validatedData = $request->validate([
+            'date' => 'required|date'
+        ]);
         $date = date('Y-m-d',strtotime($request->date));
         $m = date('m',strtotime($date));
         $y = date('Y',strtotime($date));
