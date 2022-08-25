@@ -44,25 +44,24 @@
                     <table class="table table-striped table-compact">
                         <thead>
                             <tr>
-                                <th>Fecha</th>
                                 <th>Valor</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($items['Dolares'] as $dolar)
+                            @foreach($items as $dolar)
                                 <tr>
-                                    <td>{{$dolar->Fecha}}</td>
                                     <td>{{$dolar->Valor}}</td>
+                                    <td>{{$dolar->Fecha}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <form method="" action="#">
+                <form method="post" action="/download">
                     {{ csrf_field() }}
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-success">Exportar a Excel</button>
-                    </div>
+                    <input type="hidden" name="date" value="{{$date}}">
+                    <button type="submit" class="btn btn-success">Exportar a Excel</button>
                 </form>
             </div>
         </div>

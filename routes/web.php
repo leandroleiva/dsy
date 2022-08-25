@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@dolarGet')->name('homeget');
 Route::post('/home', 'HomeController@dolarPost')->name('homepost');
+Route::post('/download', 'HomeController@download')->name('download');

@@ -14,7 +14,8 @@
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^1.4",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^1.16.15",
