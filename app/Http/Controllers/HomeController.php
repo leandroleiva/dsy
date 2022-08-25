@@ -14,19 +14,20 @@ class HomeController extends Controller
 
     public function dolarGet()
     {
-        $date = Carbon::now();
-        return view('home',compact('date'));
+        $date = $today = Carbon::now();
+        return view('home',compact('date','today'));
     }
 
     public function dolarPost(DateValidate $request)
     {
+        $today = Carbon::now();
+        $date = new Carbon($request->date);
         try {
-            $date = new Carbon($request->date);
             $items = collect(json_decode(file_get_contents('https://api.sbif.cl/api-sbifv3/recursos_api/dolar/'.$date->year.'/'.$date->month.'?apikey=d8093171162117c0c6e8da895b00978d4e2b6a0e&formato=json')));
         } catch (\Throwable $th) {
-            return view('home',compact('date'))
+            return view('home',compact('date','today'))
                     ->withErrors(["Error"=>"No se pudo realizar la petición, intentelo más tarde"]);
         }
-        return view('home',compact('date','items'));
+        return view('home',compact('date','today','items'));
     }
 }

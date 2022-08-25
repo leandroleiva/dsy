@@ -6,7 +6,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Consulta Dolar</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -18,8 +17,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="date">Fecha</label>
-                                <input type="text" name="date" class="form-control datepicker" id="#date" value="{{$date->format('Y-m')}}">
-                                <small>AAAA-mm</small>
+                                <input type="month" id="date" name="date" class="form-control" value="{{$date->format('Y-m')}}" max="{{$today->format('Y-m')}}" >
                             </div>
                             <button type="submit" class="btn btn-success">Consultar</button>
                         </div>
@@ -70,12 +68,4 @@
         </div>
     @endif
 </div>
-<script type="text/javascript">
-    $("#date").datepicker({ 
-        format: 'dd-mm-yyyy',
-        language: "es",
-        weekStart: 1,
-        autoclose: true
-    });
-</script>
 @endsection
