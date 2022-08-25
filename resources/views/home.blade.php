@@ -21,8 +21,6 @@
                                 <input type="text" name="date" class="form-control datepicker" id="#date" value="{{$date}}">
                                 <small>AAAA-mm-dd</small>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <button type="submit" class="btn btn-success">Consultar</button>
                         </div>
                     </form>
@@ -31,6 +29,15 @@
         </div>
     </div>
     &nbsp;
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if(isset($items))
         <div class="card">
             <div class="card-header">Valor Dolar {{$date}}</div>
