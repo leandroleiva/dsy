@@ -18,8 +18,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="date">Fecha</label>
-                                <input type="text" name="date" class="form-control datepicker" id="#date" value="{{$date}}">
-                                <small>AAAA-mm-dd</small>
+                                <input type="text" name="date" class="form-control datepicker" id="#date" value="{{$date->format('Y-m')}}">
+                                <small>AAAA-mm</small>
                             </div>
                             <button type="submit" class="btn btn-success">Consultar</button>
                         </div>
@@ -40,7 +40,7 @@
     @endif
     @if(isset($items))
         <div class="card">
-            <div class="card-header">Valor Dolar {{$date}}</div>
+            <div class="card-header">Valor Dolar {{$date->format('Y-m')}}</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-compact">
@@ -51,19 +51,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
                             @foreach($items['Dolares'] as $dolar)
                                 <tr>
                                     <td>{{$dolar->Fecha}}</td>
                                     <td>{{$dolar->Valor}}</td>
-                                    
                                 </tr>
-                                
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-        
                 <form method="" action="#">
                     {{ csrf_field() }}
                     <div class="col-md-12">
