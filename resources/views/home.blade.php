@@ -38,7 +38,7 @@
     @endif
     @if(isset($items))
         <div class="card">
-            <div class="card-header">Valor Dolar {{$date->format('Y-m')}}</div>
+            <div class="card-header">Valor dolar {{$date_format}}</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-compact">
@@ -51,7 +51,7 @@
                         <tbody>
                             @foreach($items as $dolar)
                                 <tr>
-                                    <td>{{$dolar->Valor}}</td>
+                                    <td>$ {{$dolar->Valor}}</td>
                                     <td>{{$dolar->Fecha}}</td>
                                 </tr>
                             @endforeach
