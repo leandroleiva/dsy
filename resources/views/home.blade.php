@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Consulta Dolar</div>
+                <div class="card-header"><i class="fa-solid fa-magnifying-glass"></i>  Consulta dolar</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -14,12 +14,16 @@
                     @endif
                     <form method="post" action="/home">
                         {{ csrf_field() }}
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="date">Fecha</label>
-                                <input type="month" id="date" name="date" class="form-control" value="{{$date->format('Y-m')}}" max="{{$today->format('Y-m')}}" >
+                        <div class="row g-3 align-items-center justify-content-center">
+                            <div class="col-auto">
+                                <label for="date" class="col-form-label">Fecha</label>
                             </div>
-                            <button type="submit" class="btn btn-success">Consultar</button>
+                            <div class="col-auto">
+                                <input type="month" id="date" name="date" class="form-control form-control-lg" value="{{$date->format('Y-m')}}" max="{{$today->format('Y-m')}}" >
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-success form-control-lg"><i class="fa-solid fa-magnifying-glass"></i> Consultar</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -38,30 +42,32 @@
     @endif
     @if(isset($items))
         <div class="card">
-            <div class="card-header">Valor dolar {{$date_format}}</div>
+            <div class="card-header">
+                <i class="fa-solid fa-table-list"></i> Valores dolar {{$date_format}}
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-compact">
                         <thead>
                             <tr>
-                                <th>Valor</th>
-                                <th>Fecha</th>
+                                <th class="text-center"><i class="fa-solid fa-money-bill-1-wave"></i> Valor</th>
+                                <th class="text-center"><i class="fa-solid fa-calendar-days"></i> Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($items as $dolar)
                                 <tr>
-                                    <td>$ {{$dolar->Valor}}</td>
-                                    <td>{{$dolar->Fecha}}</td>
+                                    <td class="text-center">$ {{$dolar->Valor}}</td>
+                                    <td class="text-center">{{$dolar->Fecha}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <form method="post" action="/download">
+                <form method="post" action="/download" class='text-center'>
                     {{ csrf_field() }}
                     <input type="hidden" name="date" value="{{$date}}">
-                    <button type="submit" class="btn btn-success">Exportar a Excel</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-download"></i> Descargar Excel</button>
                 </form>
             </div>
         </div>
