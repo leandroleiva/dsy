@@ -42,6 +42,9 @@
     @endif
     @if(isset($items))
         <div class="card">
+            <canvas id="myChart" ></canvas>
+        </div>
+        <div class="card">
             <div class="card-header">
                 <i class="fa-solid fa-table-list"></i> Valores dolar {{$date_format}}
             </div>
@@ -73,4 +76,29 @@
         </div>
     @endif
 </div>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                @foreach ( $items as $item)
+                    '{{date("d",strtotime($item->Fecha))}}',
+                @endforeach
+            ],
+            datasets: [{
+                label:  '{{$date_format}}',
+                data: [
+                    @foreach ( $items as $item)
+                        '{{(float)$item->Valor}}',
+                    @endforeach
+                ],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        }
+    });
+    </script>
+    
 @endsection

@@ -21,6 +21,8 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/182d411c1d.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 <body>
     <div id="app">

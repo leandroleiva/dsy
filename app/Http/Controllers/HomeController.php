@@ -28,16 +28,18 @@ class HomeController extends Controller
         $date_format = $this->dateFormat($date);
         try {
             $items = collect(json_decode(file_get_contents('https://api.sbif.cl/api-sbifv3/recursos_api/dolar/'.$date->year.'/'.$date->month.'?apikey=d8093171162117c0c6e8da895b00978d4e2b6a0e&formato=json')))['Dolares'];
+            
             $items = collect($items)->map(function ($item) {
                 $item->Fecha = date('d-m-Y',strtotime($item->Fecha));
                 return $item;
             });
+            $valores = $items->pluck('Valor');
+            //dd($valores);
         } catch (\Throwable $th) {
-            dd($th);
             return view('home',compact('date','today'))
                     ->withErrors(["Error"=>"No se pudo realizar la petición, intentelo más tarde"]);
         }
-        return view('home',compact('date','today','items','date_format'));
+        return view('home',compact('date','today','items','date_format','valores'));
     }
 
     public function download(Request $request) {
